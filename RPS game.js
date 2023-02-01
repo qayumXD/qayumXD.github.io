@@ -1,3 +1,6 @@
+let player = 0
+let computer = 0
+
 // function to get user's choice
 function getUserChoice() {
   var userChoice = prompt("Do you choose rock, paper or scissors?");
@@ -27,21 +30,27 @@ function determineWinner(userChoice, computerChoice) {
     return "The game is a tie!";
   } else if (userChoice === "rock") {
     if (computerChoice === "scissors") {
-      return "You win!";
+      player++
+      return "You win!"; 
     } else {
-      return "The computer wins!";
+      computer++
+      return "The computer wins!"; 
     }
   } else if (userChoice === "paper") {
     if (computerChoice === "rock") {
-      return "You win!";
+      player++
+      return "You win!"; 
     } else {
-      return "The computer wins!";
+      computer++
+      return "The computer wins!"; 
     }
   } else if (userChoice === "scissors") {
     if (computerChoice === "paper") {
-      return "You win!";
+      player++
+      return "You win!"; 
     } else {
-      return "The computer wins!";
+      computer++
+      return "The computer wins!"; 
     }
   }
 }
@@ -53,8 +62,19 @@ function playGame() {
   var computerChoice = getComputerChoice();
   console.log("You chose " + userChoice + " and the computer chose " + computerChoice + ".");
   console.log(determineWinner(userChoice, computerChoice));
+  console.log('-_-_-_-_-_-')
+  }
+
+  // Winner determination after 5 rounds: 
+  if (player > computer) {
+    console.log("Unimaginable! a scum like you won.")
+  } else if (computer > player) {
+    console.log("You shit eating piece of scum! you lost to a machine,")
+  } else {
+    console.log('TIDE!!!!')
   }
 }
+
 
 // call the playGame function to start the game
 playGame();
