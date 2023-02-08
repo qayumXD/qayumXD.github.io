@@ -24,6 +24,9 @@ function getComputerChoice() {
   }
 }
 
+
+
+
 // function to determine the winner of the game
 function determineWinner(userChoice, computerChoice) {
   if (userChoice === computerChoice) {
@@ -55,6 +58,8 @@ function determineWinner(userChoice, computerChoice) {
   }
 }
 
+
+
 // function to play the game
 function playGame() {
   for(let i=0; i < 5; i++) {
@@ -69,7 +74,7 @@ function playGame() {
   if (player > computer) {
     console.log("Unimaginable! a scum like you won.")
   } else if (computer > player) {
-    console.log("You shit eating piece of scum! you lost to a machine,")
+    console.log("You shit eating piece of scum! you lost to a machine.")
   } else {
     console.log('TIDE!!!!')
   }
@@ -77,4 +82,4 @@ function playGame() {
 
 
 // call the playGame function to start the game
-playGame();
+
