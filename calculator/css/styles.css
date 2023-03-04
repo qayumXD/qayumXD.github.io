@@ -1,0 +1,591 @@
+/* prefixed by https://autoprefixer.github.io (PostCSS: v7.0.26, autoprefixer: v9.7.3) */
+
+html {
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+body {
+    background-color: #273043;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    min-height: 100vh;
+    overflow: hidden;
+
+}
+
+.wrapper > * {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 1 auto;
+            flex: 0 1 auto;
+}
+
+.calculator-wrapper {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+}
+
+.container {
+    background-color: #242c3d;
+    border: 1px solid black;
+    -webkit-box-shadow: 3px 3px 3px black;
+            box-shadow: 3px 3px 3px black;
+    display: -ms-grid;
+    display: grid;
+    grid-gap: 4px;
+    -ms-grid-columns: 1fr 4px 1fr 4px 1fr 4px 1fr;
+    grid-template-columns: repeat(4, 1fr);
+    -ms-grid-rows: 35px 4px 1fr 4px 1fr 4px 1fr 4px 1fr 4px 1fr 4px 1fr;
+    grid-template-rows: 35px repeat(6, 1fr);
+    height: 90vw;
+    margin: 30px auto;
+    max-height: 400px;
+    max-width: 400px;
+    width: 80vw;
+}
+
+.container > *:nth-child(1) {
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+}
+
+.container > *:nth-child(2) {
+    -ms-grid-row: 1;
+    -ms-grid-column: 3;
+}
+
+.container > *:nth-child(3) {
+    -ms-grid-row: 1;
+    -ms-grid-column: 5;
+}
+
+.container > *:nth-child(4) {
+    -ms-grid-row: 1;
+    -ms-grid-column: 7;
+}
+
+.container > *:nth-child(5) {
+    -ms-grid-row: 3;
+    -ms-grid-column: 1;
+}
+
+.container > *:nth-child(6) {
+    -ms-grid-row: 3;
+    -ms-grid-column: 3;
+}
+
+.container > *:nth-child(7) {
+    -ms-grid-row: 3;
+    -ms-grid-column: 5;
+}
+
+.container > *:nth-child(8) {
+    -ms-grid-row: 3;
+    -ms-grid-column: 7;
+}
+
+.container > *:nth-child(9) {
+    -ms-grid-row: 5;
+    -ms-grid-column: 1;
+}
+
+.container > *:nth-child(10) {
+    -ms-grid-row: 5;
+    -ms-grid-column: 3;
+}
+
+.container > *:nth-child(11) {
+    -ms-grid-row: 5;
+    -ms-grid-column: 5;
+}
+
+.container > *:nth-child(12) {
+    -ms-grid-row: 5;
+    -ms-grid-column: 7;
+}
+
+.container > *:nth-child(13) {
+    -ms-grid-row: 7;
+    -ms-grid-column: 1;
+}
+
+.container > *:nth-child(14) {
+    -ms-grid-row: 7;
+    -ms-grid-column: 3;
+}
+
+.container > *:nth-child(15) {
+    -ms-grid-row: 7;
+    -ms-grid-column: 5;
+}
+
+.container > *:nth-child(16) {
+    -ms-grid-row: 7;
+    -ms-grid-column: 7;
+}
+
+.container > *:nth-child(17) {
+    -ms-grid-row: 9;
+    -ms-grid-column: 1;
+}
+
+.container > *:nth-child(18) {
+    -ms-grid-row: 9;
+    -ms-grid-column: 3;
+}
+
+.container > *:nth-child(19) {
+    -ms-grid-row: 9;
+    -ms-grid-column: 5;
+}
+
+.container > *:nth-child(20) {
+    -ms-grid-row: 9;
+    -ms-grid-column: 7;
+}
+
+.container > *:nth-child(21) {
+    -ms-grid-row: 11;
+    -ms-grid-column: 1;
+}
+
+.container > *:nth-child(22) {
+    -ms-grid-row: 11;
+    -ms-grid-column: 3;
+}
+
+.container > *:nth-child(23) {
+    -ms-grid-row: 11;
+    -ms-grid-column: 5;
+}
+
+.container > *:nth-child(24) {
+    -ms-grid-row: 11;
+    -ms-grid-column: 7;
+}
+
+.container > *:nth-child(25) {
+    -ms-grid-row: 13;
+    -ms-grid-column: 1;
+}
+
+.container > *:nth-child(26) {
+    -ms-grid-row: 13;
+    -ms-grid-column: 3;
+}
+
+.container > *:nth-child(27) {
+    -ms-grid-row: 13;
+    -ms-grid-column: 5;
+}
+
+.container > *:nth-child(28) {
+    -ms-grid-row: 13;
+    -ms-grid-column: 7;
+}
+
+.container > * {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    background-color: #242c3d;
+    border: none;
+    color: #00b1c5;
+    display: -ms-grid;
+    display: grid;
+    font-family: monospace;
+    font-size: 1.5rem;
+    font-weight: 600;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+}
+
+/* Display Areas */
+.display-container{
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    background-color: #00b1c5;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 3;
+    grid-column: 1 / 4;
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 2;
+    grid-row: 1 / 3;
+    -ms-grid-columns: (1fr)[3];
+    grid-template-columns: repeat(3, 1fr);
+    -ms-grid-rows: 35px auto;
+    grid-template-rows: 35px auto;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+}
+.display-container > *:nth-child(1){
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+}
+.display-container > *:nth-child(2){
+    -ms-grid-row: 1;
+    -ms-grid-column: 2;
+}
+.display-container > *:nth-child(3){
+    -ms-grid-row: 1;
+    -ms-grid-column: 3;
+}
+.display-container > *:nth-child(4){
+    -ms-grid-row: 2;
+    -ms-grid-column: 1;
+}
+.display-container > *:nth-child(5){
+    -ms-grid-row: 2;
+    -ms-grid-column: 2;
+}
+.display-container > *:nth-child(6){
+    -ms-grid-row: 2;
+    -ms-grid-column: 3;
+}
+
+.display, .raw-display {
+    font-family: monospace;
+    -webkit-box-pack: right;
+        -ms-flex-pack: right;
+            justify-content: right;
+    -ms-grid-column-align: stretch;
+        justify-self: stretch;
+    overflow: hidden;
+    padding: 0 10px;
+    text-align: end;
+}
+
+.display {
+    color: #273043;
+    font-size: 1.5rem;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 3;
+    grid-column: 1 / 4;
+    -ms-grid-row: 2;
+    -ms-grid-row-span: 1;
+    grid-row: 2 / 3; 
+}
+
+.raw-display {
+    color: white;
+    font-size: .65rem;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 3;
+    grid-column: 1 / 4;
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 1;
+    grid-row: 1 / 2;
+}
+
+/* Buttons */
+button {
+    overflow: hidden;
+}
+
+button img {
+    margin: 0 auto;
+}
+
+button sup {
+    font-size: .5rem;
+    height: 30px;
+    vertical-align: top;
+}
+
+button:focus {
+    outline-color: #00b1c5;
+}
+
+button:hover {
+    color: #00cfe6;
+    font-size: 1.75rem;
+}
+
+.operator {
+    background: #242c3d;
+    color: white;
+    font-family: inherit;
+    font-size: 1.25rem;
+}
+
+.operator:focus,
+.operator:hover {
+    color: white;
+    font-size: 1.5rem;
+}
+
+.operator:focus img,
+.operator:hover img {
+    height: 25px;
+}
+
+#Backspace {
+    -ms-grid-column: 4;
+    -ms-grid-column-span: 1;
+    grid-column: 4 / 5;
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 2;
+    grid-row: 1 / 3;
+}
+
+#Backspace:focus img, 
+#Backspace:hover img {
+    height: 35px;
+}
+
+.equal {
+    background-color: #00b1c5;
+}
+
+.equal:focus{
+    outline-color: white;
+}
+
+#exponent {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+#factorial, #exponent {
+    letter-spacing: .1em;
+}
+
+/* Text Content */
+h1 {
+    color: #ff7800;
+    font-size: 2rem;
+    margin: 30px 0 0;
+    text-align: center;
+}
+
+h2 {
+    color: #ffffff;
+    margin: 15px 5vw;
+    text-align: center;
+}
+
+p {
+    color: #ff7800;
+    font-size: .9rem;
+    line-height: 1.5rem;
+}
+
+p span {
+    color: white;
+}
+
+.warning-container {
+    margin: 15px auto;
+    max-width: 400px;
+    min-height: 125px;
+    width: 80vw;
+}
+
+.shortcut {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.shortcut img {
+    padding-right: 6px;
+}
+
+/* Footer */
+footer {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    background-color: #00b1c5;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    height: 50px;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    justify-self: flex-end;
+    padding: 5px;
+    width: 100%;
+}
+
+footer img {
+    margin-right: 15px;
+}
+
+.description {
+    color: white;
+    font-size: .9rem;
+    line-height: 20px;
+    margin-left: 15px;
+    width: 60vw;
+}
+
+a {
+    color: white;
+}
+
+a:hover {
+    color: #242c3d;
+}
+
+@media only screen and (min-width: 400px) {
+    .container > * {
+        font-size: 2.25rem;
+    }
+
+    .display {
+        font-size: 1.9rem;
+    }
+    
+    .raw-display {
+        font-size: .9rem;
+    }
+
+    button sup {
+        font-size: .7rem;
+    }
+
+    .operator {
+        font-size: 1.5rem;
+    }
+
+    button img {
+        height: 25px;
+    }
+
+    button:hover {
+        font-size: 2.5rem;
+    }
+
+    #Backspace img {
+        height: 35px;
+    }
+    
+    #Backspace:focus img, 
+    #Backspace:hover img {
+        height: 40px;
+    }
+
+    .operator:hover img {
+        height: 30px;
+    }
+
+    .operator:focus,
+    .operator:hover {
+        font-size: 1.75rem;
+    }
+
+    #positive-negative {
+        font-size: 1.75rem;
+    }
+
+    #positive-negative:hover {
+        font-size: 2rem;
+    }
+
+    h1 {
+        font-size: 2.25rem;
+    }
+
+    p {
+        font-size: 1rem;
+        /* line-height: 1.75rem; */
+    }
+}
+
+@media only screen and (min-width: 500px) {
+
+    .container > * {
+        font-size: 3rem;
+    }
+
+    .display {
+        font-size: 2.4rem;
+    }
+    
+    .raw-display {
+        font-size: 1.1rem;
+    }
+
+    button sup {
+        font-size: .9rem;
+    }
+
+    .operator {
+        font-size: 1.75rem;
+    }
+
+    button img {
+        height: 30px;
+    }
+
+    .operator:hover img {
+        height: 35px;
+    }
+
+    #Backspace img {
+        height: 40px;
+    }
+    
+    #Backspace:focus img, 
+    #Backspace:hover img {
+        height: 45px;
+    }
+
+    button:hover {
+        font-size: 3.25rem;
+    }
+
+    .operator:focus,
+    .operator:hover {
+        font-size: 2rem;
+    }
+
+    #positive-negative {
+        font-size: 2.25rem;
+    }
+
+    #positive-negative:hover {
+        font-size: 2.5rem;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    p {
+        font-size: 1.25rem;
+        line-height: 1.75rem;
+    }
+
+    footer img {
+        margin-right: 30px;
+    }
+    
+    .description {
+        margin-left: 30px;
+    }
+}
