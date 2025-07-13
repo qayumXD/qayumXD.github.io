@@ -1,44 +1,56 @@
 import React from "react";
 import '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faReact, faDocker, faPython } from '@fortawesome/free-brands-svg-icons';
-import { faProjectDiagram } from '@fortawesome/free-solid-svg-icons';
+import { faReact, faLaravel, faPython, faNodeJs } from '@fortawesome/free-brands-svg-icons';
+import { faCashRegister, faProjectDiagram } from '@fortawesome/free-solid-svg-icons';
 import Chip from '@mui/material/Chip';
 import '../assets/styles/Expertise.scss';
 
 const labelsFirst = [
     "React",
-    "Vite",
+    "Node.js",
+    "Laravel",
     "JavaScript",
     "HTML5",
     "CSS3",
-    "JSON",
     "MySQL",
-    "SQL",
-    "ER Diagrams"
+    "PostgreSQL",
+    "Payment Gateway APIs",
+    "RESTful APIs"
 ];
 
 const labelsSecond = [
-    "Stella Architect",
-    "CLDs",
-    "System Reports",
-    "Hardware Fixes",
-    "BIOS Resets",
-    "WiFi Security"
+    "POS Integration",
+    "Data Integrity",
+    "Enterprise Systems",
+    "Business Process Optimization",
+    "Real-time Processing",
+    "Multi-platform Support",
+    "Hardware Integration"
 ];
 
 const labelsThird = [
-    "BeautifulSoup",
     "Selenium",
-    "requests",
-    "pandas",
-    "ShopifyAPI",
-    "pytest",
-    "dotenv",
-    "openpyxl"
+    "Playwright",
+    "BeautifulSoup",
+    "Shopify API",
+    "Daraz Integration",
+    "Form Automation",
+    "E-commerce Migration",
+    "Cross-platform Bots"
 ];
 
-function Expertise() {
+const labelsFourth = [
+    "Stella Architect",
+    "System Dynamics",
+    "Business Modeling",
+    "Process Simulation",
+    "CLDs",
+    "System Reports",
+    "Performance Analysis"
+];
+
+export default function Expertise() {
     return (
         <div className="container" id="expertise">
             <div className="skills-container">
@@ -47,8 +59,8 @@ function Expertise() {
 
                     <div className="skill">
                         <FontAwesomeIcon icon={faReact} size="3x" />
-                        <h3>Responsive Web Development</h3>
-                        <p>I specialize in building fast, responsive web apps using React and Vite. My development approach blends technical precision with clean design and scalable code architecture.</p>
+                        <h3>Full-Stack Web Development</h3>
+                        <p>I build scalable web applications using modern technologies. From photo albums to library management systems, I deliver complete solutions with clean architecture and responsive design.</p>
                         <div className="flex-chips">
                             <span className="chip-title">Tech stack:</span>
                             {labelsFirst.map((label, index) => (
@@ -58,11 +70,11 @@ function Expertise() {
                     </div>
 
                     <div className="skill">
-                        <FontAwesomeIcon icon={faProjectDiagram} size="3x" />
-                        <h3>Systems Modeling & Tech Support</h3>
-                        <p>I use Stella Architect to model complex systems and generate clear, actionable insights. Additionally, I provide hands-on technical troubleshooting — from hardware repair to network diagnostics.</p>
+                        <FontAwesomeIcon icon={faCashRegister} size="3x" />
+                        <h3>POS Systems & Enterprise Solutions</h3>
+                        <p>With 3+ years of specialized experience, I develop and integrate Point of Sale systems for businesses. From seamless integrations to data integrity solutions, I ensure reliable, scalable POS architecture.</p>
                         <div className="flex-chips">
-                            <span className="chip-title">Core Tools:</span>
+                            <span className="chip-title">Specialization:</span>
                             {labelsSecond.map((label, index) => (
                                 <Chip key={index} className='chip' label={label} />
                             ))}
@@ -71,11 +83,23 @@ function Expertise() {
 
                     <div className="skill">
                         <FontAwesomeIcon icon={faPython} size="3x" />
-                        <h3>Bot Automation & Data Extraction</h3>
-                        <p>I build scalable bots for web scraping, form fulfillment, and Shopify automation. My solutions are modular, well-tested, and production-ready — built to save time and boost efficiency.</p>
+                        <h3>Bot Automation & E-commerce Integration</h3>
+                        <p>I create intelligent automation solutions for business processes. From Daraz to Shopify migrations to form automation, my bots are production-ready and designed to save time and boost efficiency.</p>
                         <div className="flex-chips">
-                            <span className="chip-title">Libraries & Tools:</span>
+                            <span className="chip-title">Automation Tools:</span>
                             {labelsThird.map((label, index) => (
+                                <Chip key={index} className='chip' label={label} />
+                            ))}
+                        </div>
+                    </div>
+
+                    <div className="skill">
+                        <FontAwesomeIcon icon={faProjectDiagram} size="3x" />
+                        <h3>System Modeling & Business Analysis</h3>
+                        <p>I use Stella system dynamics modeling to analyze and optimize business processes. My models provide clear insights for decision-making and help businesses understand complex system behaviors.</p>
+                        <div className="flex-chips">
+                            <span className="chip-title">Modeling Tools:</span>
+                            {labelsFourth.map((label, index) => (
                                 <Chip key={index} className='chip' label={label} />
                             ))}
                         </div>
@@ -86,5 +110,3 @@ function Expertise() {
         </div>
     );
 }
-
-export default Expertise;

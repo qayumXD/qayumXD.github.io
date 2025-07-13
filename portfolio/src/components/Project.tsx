@@ -18,24 +18,24 @@ function Project() {
         <div className="projects-grid">
            
             <div className="project">
-                <a href="#" target="_blank" rel="noreferrer"><img src={mock04} className="zoom" alt="thumbnail" width="100%"/></a>
-                <a href="#" target="_blank" rel="noreferrer"><h2>AutoScrape Deals Bot</h2></a>
-                <p>A Python-based bot that automatically scrapes top tech deals from e-commerce platforms like Amazon, Daraz, or Newegg using BeautifulSoup or Playwright.</p>
-            </div>
-            <div className="project">
-                <a href="#" target="_blank" rel="noreferrer"><img src={mock03} className="zoom" alt="thumbnail" width="100%"/></a>
-                <a href="#" target="_blank" rel="noreferrer"><h2>Flashcard & Quiz Interface — Fiverr Project</h2></a>
-                <p>Built with React and Vite, this app dynamically processes uploaded JSON files to generate flashcards or quiz formats in real time. Features include file validation, smart routing, and interactive UI rendering based on content type.</p>
+                <a href="#" target="_blank" rel="noreferrer"><img src={mock01} className="zoom" alt="thumbnail" width="100%"/></a>
+                <a href="#" target="_blank" rel="noreferrer"><h2>Scalable POS System</h2></a>
+                <p>A comprehensive Point of Sale system built with Node.js and React, featuring real-time inventory management, payment processing, and multi-location support. Designed for scalability with enterprise-grade data integrity and seamless hardware integration.</p>
             </div>
             <div className="project">
                 <a href="#" target="_blank" rel="noreferrer"><img src={mock02} className="zoom" alt="thumbnail" width="100%"/></a>
-                <a href="#" target="_blank" rel="noreferrer"><h2>Space Mission & Satellite Tracking System</h2></a>
-                <p>An AI-powered academic project built with React 18, Three.js, and FastAPI, featuring 3D visualizations, interactive charts, and real-time satellite tracking. It integrates Oracle DB and ML models for predictive analytics and mission control.</p>
+                <a href="#" target="_blank" rel="noreferrer"><h2>Library Management System</h2></a>
+                <p>Full-featured library management application developed with Laravel, featuring book cataloging, member management, borrowing/return tracking, and automated fine calculations. Includes admin dashboard and comprehensive reporting system.</p>
             </div>
             <div className="project">
-                <a href="#" target="_blank" rel="noreferrer"><img src={mock01} className="zoom" alt="thumbnail" width="100%"/></a>
-                <a href="#" target="_blank" rel="noreferrer"><h2>E-commerce Website</h2></a>
-                <p>Built with HTML, CSS, Bootstrap, PHP, JavaScript, and MySQL, this full-featured platform allows users to browse products by category, register/login securely, manage their cart, and complete purchases — delivering a seamless shopping experience.</p>
+                <a href="#" target="_blank" rel="noreferrer"><img src={mock03} className="zoom" alt="thumbnail" width="100%"/></a>
+                <a href="#" target="_blank" rel="noreferrer"><h2>Photo Album Web App</h2></a>
+                <p>Responsive photo management system with features like drag-and-drop uploads, album organization, image optimization, and secure sharing. Built with modern web technologies for seamless user experience across all devices.</p>
+            </div>
+            <div className="project">
+                <a href="#" target="_blank" rel="noreferrer"><img src={mock04} className="zoom" alt="thumbnail" width="100%"/></a>
+                <a href="#" target="_blank" rel="noreferrer"><h2>Daraz to Shopify Migration Bot</h2></a>
+                <p>Intelligent automation bot using Selenium and Playwright that extracts product data from Daraz marketplace and seamlessly migrates it to Shopify stores. Features include data validation, image processing, and bulk product management.</p>
             </div>
         </div>
     </div>

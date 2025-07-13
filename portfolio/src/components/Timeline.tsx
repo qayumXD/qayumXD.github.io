@@ -13,47 +13,64 @@ function Timeline() {
         <h1>Career History</h1>
         <VerticalTimeline>
 
-          {/* Parsed from user input */}
-
-
-
-
           <VerticalTimelineElement
             className="vertical-timeline-element--work"
-            date="2022 – 2022"
+            date="2024 – Present"
             iconStyle={{ background: '#5000ca', color: 'white' }}
             icon={<FontAwesomeIcon icon={faBriefcase} />}
           >
-            <h3 className="vertical-timeline-element-title">System Dynamics Modeler</h3>
-            <h4 className="vertical-timeline-element-subtitle">Remote / Consulting</h4>
+            <h3 className="vertical-timeline-element-title">Freelance Developer & System Consultant</h3>
+            <h4 className="vertical-timeline-element-subtitle">Vehari District, Punjab</h4>
             <p>
-              Creating dynamic simulations and CLDs using Stella Architect for academic and consulting clients.
-              Detailed reporting and behavior analysis included.
+              Providing comprehensive tech solutions to local businesses including POS systems, web development, 
+              bot automation, and Stella system dynamics modeling. Specializing in business process optimization 
+              and digital transformation for small to medium enterprises.
             </p>
           </VerticalTimelineElement>
 
           <VerticalTimelineElement
             className="vertical-timeline-element--work"
-            date="2021 – 2022"
+            date="2023 – 2024"
             iconStyle={{ background: '#5000ca', color: 'white' }}
             icon={<FontAwesomeIcon icon={faBriefcase} />}
           >
-            <h3 className="vertical-timeline-element-title">Technical Problem-Solver</h3>
-            <h4 className="vertical-timeline-element-subtitle">Hands-on</h4>
+            <h3 className="vertical-timeline-element-title">POS Data Integrity Specialist</h3>
+            <h4 className="vertical-timeline-element-subtitle">Mehfoos Hardware, Vehari District</h4>
             <p>
-              Experience in hardware troubleshooting, network security, and backend diagnostics.
-              Explored bot development, asynchronous coding, and IDEs.
+              Ensured data integrity and system reliability for hardware retail POS operations. 
+              Implemented data validation protocols and resolved system inconsistencies to maintain 
+              accurate inventory and sales records.
             </p>
           </VerticalTimelineElement>
 
-          {/* Existing career entries remain unchanged below */}
+          <VerticalTimelineElement
+            className="vertical-timeline-element--work"
+            date="2022 – 2023"
+            iconStyle={{ background: '#5000ca', color: 'white' }}
+            icon={<FontAwesomeIcon icon={faBriefcase} />}
+          >
+            <h3 className="vertical-timeline-element-title">Assistant POS Developer</h3>
+            <h4 className="vertical-timeline-element-subtitle">Local POS Developer, Vehari District</h4>
+            <p>
+              Worked closely with an experienced POS developer to learn system architecture, 
+              implementation strategies, and client requirements. Gained hands-on experience 
+              in POS customization and business-specific integrations.
+            </p>
+          </VerticalTimelineElement>
 
-
-
-
-
-
-
+          <VerticalTimelineElement
+            className="vertical-timeline-element--work"
+            date="2022"
+            iconStyle={{ background: '#5000ca', color: 'white' }}
+            icon={<FontAwesomeIcon icon={faBriefcase} />}
+          >
+            <h3 className="vertical-timeline-element-title">POS Integration Developer</h3>
+            <h4 className="vertical-timeline-element-subtitle">Rehan Seeds and Co, Vehari District</h4>
+            <p>
+              Developed and implemented seamless POS integration solutions for agricultural business operations. 
+              Created custom modules for inventory management and sales tracking specific to the seeds industry.
+            </p>
+          </VerticalTimelineElement>
 
           <VerticalTimelineElement
             className="vertical-timeline-element--work"
@@ -65,6 +82,7 @@ function Timeline() {
             <h4 className="vertical-timeline-element-subtitle">NesterSky, Vehari</h4>
             <p>
               Hands-on experience in building frontend and backend web apps within a professional team setting.
+              Learned collaborative development practices and gained exposure to real-world project workflows.
             </p>
           </VerticalTimelineElement>
 
@@ -75,25 +93,26 @@ function Timeline() {
             icon={<FontAwesomeIcon icon={faBriefcase} />}
           >
             <h3 className="vertical-timeline-element-title">Junior Developer (Freelance Projects)</h3>
-            <h4 className="vertical-timeline-element-subtitle">Multan</h4>
+            <h4 className="vertical-timeline-element-subtitle">Vehari District, Punjab</h4>
             <p>
               Worked on small freelance client projects using React and basic backend logic for portfolio growth.
+              Built foundational skills in client communication and project delivery.
             </p>
           </VerticalTimelineElement>
 
           <VerticalTimelineElement
             className="vertical-timeline-element--work"
-            date="Pre–2022"
+            date="Pre–2021"
             iconStyle={{ background: '#5000ca', color: 'white' }}
             icon={<FontAwesomeIcon icon={faBriefcase} />}
           >
-            <h3 className="vertical-timeline-element-title">Career Foundations & Growth</h3>
-            <h4 className="vertical-timeline-element-subtitle">Vehari</h4>
+            <h3 className="vertical-timeline-element-title">Career Foundations & Learning</h3>
+            <h4 className="vertical-timeline-element-subtitle">Vehari District, Punjab</h4>
             <p>
-              Explored tech fundamentals, honed problem-solving skills, and began freelance experimentation with frameworks like React.
+              Explored tech fundamentals, honed problem-solving skills, and began freelance experimentation 
+              with frameworks like React. Built the foundation for specialized POS and automation expertise.
             </p>
           </VerticalTimelineElement>
-
 
         </VerticalTimeline>
       </div>
