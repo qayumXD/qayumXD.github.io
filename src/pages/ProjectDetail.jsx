@@ -1,5 +1,6 @@
 import { useParams, Link } from 'react-router-dom'
 import { projectsData } from '../data/projects'
+import MarkdownRenderer from '../components/MarkdownRenderer'
 
 export default function ProjectDetail() {
   const { id } = useParams()
@@ -23,9 +24,7 @@ export default function ProjectDetail() {
       
       <section>
         <h2>Overview</h2>
-        <div className="bio" style={{ whiteSpace: 'pre-line' }}>
-          {project.fullDescription}
-        </div>
+        <MarkdownRenderer content={project.fullDescription} />
       </section>
 
       {project.features && (
