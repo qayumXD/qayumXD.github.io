@@ -3,6 +3,7 @@ import './App.css'
 import Home from './pages/Home'
 import Projects from './pages/Projects'
 import ProjectDetail from './pages/ProjectDetail'
+import Docs from './pages/Docs'
 
 function Navigation() {
   const location = useLocation()
@@ -18,6 +19,9 @@ function Navigation() {
         </li>
         <li>
           <Link to="/projects" className={isActive('/projects') ? 'active' : ''}>Projects</Link>
+        </li>
+        <li>
+          <Link to="/docs" className={isActive('/docs') ? 'active' : ''}>Docs</Link>
         </li>
         <li>
           <a href="https://github.com/qayumXD" target="_blank" rel="noopener noreferrer">GitHub</a>
@@ -37,6 +41,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/projects/:id" element={<ProjectDetail />} />
+            <Route path="/docs" element={<Docs />} />
           </Routes>
         </main>
         <footer>
