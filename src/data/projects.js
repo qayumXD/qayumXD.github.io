@@ -97,5 +97,85 @@ User Input → Safety Router (JSON)
       'Automated SOAP note generation',
       'Emergency red flag detection'
     ]
+  },
+  {
+    id: 'roadscope-ai',
+    title: 'RoadScope AI: Intelligent Pothole Detection & Mapping',
+    category: 'Computer Vision',
+    description: 'A comprehensive system for automating road safety inspections using computer vision (YOLOv8) to detect and map potholes from video footage.',
+    tags: ['Python', 'YOLOv8', 'Computer Vision', 'Next.js', 'Geospatial'],
+    details: 'Uses YOLOv8 to detect potholes, synchronizes them with GPS data, and visualizes the results on an interactive map dashboard.',
+    fullDescription: `RoadScope AI is a comprehensive system for automating road safety inspections. It uses computer vision (YOLOv8) to detect potholes from video footage, synchronizes detections with GPS data, and visualizes the results on an interactive map dashboard.
+
+📂 **Project Structure**
+ScopePotholeDetection/
+├── data/                  # Data storage
+│   ├── dataset/           # Training images and labels for YOLO
+│   ├── gps_logs/          # GPX/CSV GPS tracks
+│   └── raw_videos/        # Input video footage
+├── models/                # Trained YOLOv8 models (.pt)
+├── src/
+│   ├── detection/         # Phase 1 & 2: Computer Vision
+│   │   ├── extract_frames.py  # Convert video to dataset
+│   │   ├── train.py           # Train YOLOv8 model
+│   │   └── detect.py          # Run inference on video
+│   ├── mapping/           # Phase 3: Geospatial Processing
+│   │   ├── parse_gpx.py       # Parse GPX files to CSV
+│   │   ├── sync_coords.py     # Merge detections with GPS
+│   │   └── snap_to_road.py    # Google Roads API integration
+│   └── dashboard/         # Phase 4: Next.js Web App
+│       ├── app/               # Frontend Logic
+│       └── components/        # Map & Stats Components
+└── requirements.txt       # Python dependencies`,
+    github: 'https://github.com/qayumXD/RoadScope-Pothole-Detection',
+    features: [
+      'Automated pothole detection from video using YOLOv8',
+      'Synchronization of pothole detections with GPS data',
+      'Interactive map dashboard for visualizing pothole locations',
+      'Integration with Google Roads API for improved accuracy',
+      'End-to-end workflow from video capture to data visualization'
+    ]
+  },
+  {
+    id: 'news-portal-ai',
+    title: 'Portal de Noticias Inteligente',
+    category: 'AI / Full Stack',
+    description: 'An AI-powered news portal that scrapes the Boletín Oficial de la República Argentina, analyzes legal texts using LLMs, and presents business-critical insights.',
+    tags: ['React', 'Next.js', 'Strapi', 'n8n', 'Puppeteer', 'Docker'],
+    details: 'A modern, AI-powered news portal featuring a premium React frontend, Strapi CMS backend, and an n8n workflow for scraping and AI analysis.',
+    fullDescription: `A modern, AI-powered news portal that scrapes the Boletín Oficial de la República Argentina, analyzes legal texts using LLMs, and presents business-critical insights in a premium React frontend.
+
+🚀 **Architecture**
+The project consists of three main pillars orchestrated via Docker Compose:
+
+**Frontend (Next.js/React):**
+
+- Responsive, premium UI for displaying news and market data.
+- Fetches content from Strapi CMS.
+- Located in ./frontend.
+
+**Backend (Strapi CMS):**
+
+- Headless CMS to manage articles, categories, and users.
+- Stores AI-analyzed properties (Sentiment, Impact Score, Summary).
+- Database: PostgreSQL.
+
+**Intelligence & Automation (n8n):**
+
+- Scraper: Custom Puppeteer script (scrape_boletin.js) running in a secure, sandboxed environment.
+- Workflow:
+  - Scrapes the Official Gazette.
+  - Filters relevance using AI.
+  - Generates business insights (Summary, Sentiment, Impact).
+  - Ingests data into Strapi.
+- Infrastructure: Custom Docker image with Chromium support.`,
+    features: [
+      'Automated scraping of the Boletín Oficial de la República Argentina',
+      'AI-powered analysis of legal texts using LLMs',
+      'Premium React/Next.js frontend for displaying news',
+      'Strapi CMS for content management',
+      'n8n for workflow automation and intelligence',
+      'Orchestrated with Docker Compose'
+    ]
   }
 ]
