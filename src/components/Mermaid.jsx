@@ -1,5 +1,4 @@
 import { useEffect, useRef } from 'react'
-import mermaid from 'mermaid/dist/mermaid.esm.mjs'
 
 const MERMAID_CONFIG = {
   startOnLoad: false,
@@ -15,6 +14,10 @@ export default function Mermaid({ chart }) {
 
     const render = async () => {
       try {
+        const { default: mermaid } = await import(
+          /* @vite-ignore */
+          'https://cdn.jsdelivr.net/npm/mermaid@11.12.3/dist/mermaid.esm.min.mjs'
+        )
         mermaid.initialize(MERMAID_CONFIG)
         const id = `mermaid-${Math.random().toString(36).slice(2)}`
         const { svg } = await mermaid.render(id, chart)
