@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route, Link, useLocation } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 import './App.css'
 import Home from './pages/Home'
 import Projects from './pages/Projects'
@@ -35,6 +36,15 @@ function Navigation() {
 }
 
 function App() {
+  const [showBackToTop, setShowBackToTop] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => setShowBackToTop(window.scrollY > 500)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    onScroll()
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
   return (
     <BrowserRouter basename="/">
       <div className="app">
@@ -48,6 +58,14 @@ function App() {
             <Route path="/docs/:slug" element={<DocPage />} />
           </Routes>
         </main>
+        {showBackToTop && (
+          <button
+            className="back-to-top"
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          >
+            Back to top
+          </button>
+        )}
         <footer>
           <p>&copy; 2026 Qayum. All rights reserved.</p>
         </footer>
