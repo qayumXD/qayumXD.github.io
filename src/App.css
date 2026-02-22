@@ -345,9 +345,8 @@ nav ul li {
   border: 1px solid var(--color-border);
   border-radius: 16px;
   padding: 1.5rem;
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(8px);
-  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.06);
+  background: var(--color-surface);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
 }
 
 .card-label {
@@ -384,7 +383,7 @@ nav ul li {
 }
 
 .project-card.elevated {
-  background: rgba(255, 255, 255, 0.6);
+  background: var(--color-surface);
   box-shadow: 0 14px 30px rgba(0, 0, 0, 0.08);
 }
 
@@ -400,7 +399,7 @@ nav ul li {
   border: 1px solid var(--color-border);
   border-radius: 20px;
   padding: 2rem;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(230, 240, 255, 0.9));
+  background: var(--color-surface);
 }
 
 .case-metrics {
@@ -470,7 +469,7 @@ nav ul li {
   border: 1px solid var(--color-border);
   border-radius: 20px;
   padding: 2rem;
-  background: rgba(255, 255, 255, 0.8);
+  background: var(--color-surface);
 }
 
 .contact-form {

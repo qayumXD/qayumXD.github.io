@@ -6,6 +6,7 @@
   --color-accent: #0066cc;
   --color-muted: #666666;
   --color-border: #e0e0e0;
+  --color-surface: #f3f5f8;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -15,6 +16,7 @@
     --color-accent: #4da3ff;
     --color-muted: #999999;
     --color-border: #333333;
+    --color-surface: #20242a;
   }
 }
 
