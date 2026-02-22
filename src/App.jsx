@@ -4,11 +4,14 @@ import Home from './pages/Home'
 import Projects from './pages/Projects'
 import ProjectDetail from './pages/ProjectDetail'
 import Docs from './pages/Docs'
+import DocPage from './pages/DocPage'
 
 function Navigation() {
   const location = useLocation()
   
-  const isActive = (path) => location.pathname === path
+  const isActive = (path) =>
+    location.pathname === path ||
+    (path !== '/' && location.pathname.startsWith(`${path}/`))
 
   return (
     <nav>
@@ -42,6 +45,7 @@ function App() {
             <Route path="/projects" element={<Projects />} />
             <Route path="/projects/:id" element={<ProjectDetail />} />
             <Route path="/docs" element={<Docs />} />
+            <Route path="/docs/:slug" element={<DocPage />} />
           </Routes>
         </main>
         <footer>

@@ -124,6 +124,37 @@ nav ul li {
   color: var(--color-accent);
 }
 
+.docs-list {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.doc-card {
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+}
+
+.doc-card h3 {
+  margin: 0 0 0.5rem;
+}
+
+.doc-card a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.doc-card a:hover {
+  text-decoration: underline;
+}
+
+.doc-meta {
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
+}
+
 /* Home Page Sections */
 .featured-projects, .skills-section {
   margin-top: 4rem;
