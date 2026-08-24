@@ -1,175 +1,107 @@
 # Quantum Virtual Machine (QVM)
 
-The Quantum Virtual Machine (QVM) is a lightweight, educational runtime designed around a “Write Once, Run Anywhere” philosophy for quantum programs. It provides a hardware‑agnostic intermediate representation (IR), transpiles circuits to target topologies, and simulates execution on an ideal statevector backend. The goal is to reduce vendor lock‑in while making the transpilation pipeline transparent and easy to learn.
+The Quantum Virtual Machine is a Python quantum computing toolkit built around a **"Write Once, Run Anywhere"** philosophy for quantum programs. It ingests circuits from five different sources — OpenQASM 3.0, OpenQASM 2.0, JSON gate lists, Qiskit, and Cirq — converts everything into one canonical Intermediate Representation (IR), transpiles onto hardware topologies, simulates exactly, and exports back to any other framework.
 
-## Executive Summary
-
-### Problem Statement
-
-Quantum hardware remains fragmented across vendors with different native gates, topologies, and error profiles. QVM abstracts this fragmentation by ingesting a high‑level program, converting it into an IR, and transpiling it for multiple backends.
-
-### Benefits
-
-- Hardware‑agnostic circuit design and transpilation.
-- Educational visibility into routing and gate decomposition.
-- Lightweight local runtime (no cloud dependency).
-- OpenQASM 2.0 export for interoperability.
-- Visual feedback for circuits and probabilities.
-
-### Scope and Limitations
-
-- Simulates up to ~10–12 qubits (statevector memory limits).
-- Ideal (noise‑free) simulation only.
-- Heuristic transpilation; not guaranteed globally optimal.
-- No pulse‑level control or error‑correction modeling.
-
-## Project Status
-
-The QVM is complete and stable. Core modules (parser/IR, simulator, transpiler, decomposer, visualization, CLI) are functional, algorithms are verified, and the simulator is vectorized for performance.
-
-## Architecture Overview
-
-### Pipeline Flow
+One pivot format means **N+M converters instead of N×M**, and one place to guarantee correctness.
 
 ```mermaid
 flowchart LR
-  A[User Input JSON] --> B[Parser]
-  B --> C[IR / QuantumCircuit]
-  C --> D[Transpiler]
-  D --> E[Decomposer]
-  E --> F[Simulator]
-  F --> G[Visualization / Export]
+  Q3["OpenQASM 3"] --> IR
+  Q2["OpenQASM 2"] --> IR
+  J["JSON gates"] --> IR
+  QK["Qiskit"] --> IR
+  CQ["Cirq"] --> IR
+  IR["QVM IR<br/>(QuantumCircuit)"] --> T["Transpiler<br/>Greedy / SABRE"]
+  IR --> SV["Statevector engine"]
+  IR --> MPS["MPS tensor-network"]
+  T --> SV
+  T --> MPS
+  SV --> O["Observables · Noise · Sampling"]
+  MPS --> O
+  IR --> X1["→ Qiskit / Aer"]
+  IR --> X2["→ Cirq"]
+  IR --> X3["→ OpenQASM 2 / JSON"]
 ```
 
-### Step‑by‑Step Data Transformation
+## Status
 
-1. **Input JSON**
-   ```json
-   [
-     {"name": "h", "qubits": [0]},
-     {"name": "cx", "qubits": [0, 2]}
-   ]
-   ```
-2. **IR (`QuantumCircuit`)**
-   ```python
-   QuantumCircuit(
-     num_qubits=3,
-     operations=[
-       {"name": "h", "qubits": [0]},
-       {"name": "cx", "qubits": [0, 2]}
-     ]
-   )
-   ```
-3. **Transpiled Operations**
-   ```python
-   operations=[
-     {"name": "h", "qubits": [0]},
-     {"name": "swap", "qubits": [0, 1]},
-     {"name": "cx", "qubits": [1, 2]}
-   ]
-   ```
-4. **Simulation**
-   - Statevector evolves through gate applications.
-   - Probabilities are computed via the Born rule.
-5. **Visualization / Export**
-   - Circuit and histogram plots.
-   - OpenQASM 2.0 string export.
+**v0.5.x — installable from PyPI, CI-verified on every push.**
 
-## Core Components
+| Aspect | State |
+|---|---|
+| Package | `pip install quantum-virtual-machine` (Python ≥ 3.10, MIT license) |
+| Test suite | 210 tests: unit + triple-engine interop equivalence + stress corpus |
+| Algorithm audit | 19-algorithm corpus (textbook → VQE/QAOA/portfolio) cross-checked against native simulators on every push |
+| Release automation | Tagged releases build sdist/wheel, twine-check, publish to PyPI via GitHub Actions |
+| Docs | Technical reference, guides, executable tutorials run by CI so they cannot rot |
 
-### Intermediate Representation (IR)
+## The pipeline
 
-The IR uses a `QuantumCircuit` class:
-- `__init__(num_qubits)`
-- `add_operation(name, qubits, params=[])`
-- `__str__()` for debugging
+Every program takes the same path:
 
-### Simulator Engine
+1. **Ingest** — a parser converts the source into `QuantumCircuit` IR. Malformed input fails eagerly at construction time (`QVMParseError`), never mid-simulation.
+2. *(Optional)* **Bind parameters** — symbolic angles (`Parameter`, `ParameterExpression`) survive parsing and framework conversion; bind them later with a dict.
+3. *(Optional)* **Transpile** — route logical qubits onto a target topology by inserting SWAPs (Greedy or SABRE heuristic).
+4. **Simulate** — exact statevector evolution, or Matrix Product State evolution for low-entanglement circuits at 20+ qubits.
+5. **Analyze** — measurement sampling, Pauli expectation values, Kraus-channel noise, device profiles.
+6. **Export** — Qiskit, Cirq, OpenQASM 2.0, or lossless JSON round-trip.
 
-The simulator maintains a complex statevector of size `2^N` using NumPy. It supports:
-- Single‑qubit gate application via Kronecker products.
-- Vectorized CNOT and SWAP via index permutation.
-- Measurement probabilities via `abs(statevector)**2`.
+## Gate vocabulary
 
-### Transpiler
+All parsers and both interop bridges share this canonical set:
 
-Maps logical to physical qubits. If a two‑qubit gate violates topology constraints, the transpiler inserts SWAPs along the shortest path and updates the logical‑to‑physical map.
+| Class | Gates |
+|---|---|
+| 1 qubit, no params | `h` `x` `y` `z` `s` `sdg` `t` `tdg` `sx` `sxdg` `id` |
+| 1 qubit, 1 angle | `rx(θ)` `ry(θ)` `rz(θ)` `p(λ)` |
+| 2 qubits, no params | `cx` `cz` `swap` |
+| 2 qubits, 1 angle | `rxx(θ)` `rzz(θ)` `cp(λ)` |
+| 3 qubits | `ccx` |
+| Control flow | `measure`, `barrier`, `delay`, labels/jumps, classical ops |
+| Multi-controlled | `mcx`, `mcz`, `mcp`, `mcry`, `mcrz`, `mcrx` — lowered *exactly* to basis gates |
 
-### Decomposer
+Multi-controlled synthesis is exact (no approximations), which means Grover oracles written with native `mcx` import and simulate bit-for-bit correctly.
 
-Converts non‑native gates into supported primitives. For example, Toffoli is decomposed into H, CNOT, T, and Tdg gates.
+## Interoperability guarantees
 
-### Visualization and CLI
+Two promises govern every converter:
 
-- Circuit and histogram plots.
-- Unified CLI entry point for parsing, transpilation, simulation, and export.
+1. **No silent drops.** An operation either converts faithfully or raises `UnsupportedGateError` naming the offending gate. If a conversion returns, the result *is* your circuit.
+2. **Physical equivalence.** Exported circuits reproduce QVM's measurement distributions — validated by a triple-engine suite comparing QVM vs Qiskit vs Cirq probabilities for every gate in the vocabulary.
 
-## Technology Stack
+Symbolic parameters survive the trip in both directions (Qiskit `Parameter` ↔ QVM `Parameter` ↔ Cirq sympy symbols).
 
-- Python 3.10+
-- NumPy for linear algebra
-- Matplotlib for visualization
-- NetworkX for topology routing
-- Pytest for testing
+## Performance
 
-## Algorithms and Examples
+Pure-NumPy dense kernel vs compiled engines — best-of-3 wall clock, identical circuits ([full report](https://github.com/qayumXD/quantum-virtual-machine/blob/main/docs/reports/benchmark_2026-08-24.md)):
 
-### Bernstein–Vazirani
+| Family | n | QVM statevector | QVM MPS | Qiskit Aer | Cirq |
+|---|---|---|---|---|---|
+| GHZ | 8 | 0.6 ms | 1.0 ms | 1.2 ms | 4.8 ms |
+| GHZ | 16 | 14.5 ms | 1.7 ms | 40.1 ms | 8.8 ms |
+| GHZ | 24 | 13.66 s | **1.6 ms** | 17.58 s | – |
+| QFT | 12 | 10.0 ms | – | 21.4 ms | 18.5 ms |
 
-Finds a hidden bitstring `s` in a single query using phase kickback and interference.
+The takeaway: for low-entanglement families (GHZ and friends), the MPS engine beats even Aer's compiled C kernel because it exploits structure that dense simulation cannot.
 
-Example usage:
-```bash
-python examples/generate_bv.py
-python -m src.qvm.cli examples/bv_101.json --nqubits 3 --visualize
-```
+## Honest limitations
 
-### Grover’s Search
+QVM documents its ceilings rather than hiding them:
 
-Quadratic speedup for search over `N` items using Oracle + Diffuser iterations.
+- Dense statevector memory grows as O(2^N) — practical ceiling ≈ 16–20 qubits; use the MPS engine beyond that for low-entanglement work.
+- The MPS engine targets near-nearest-neighbor circuits; long-range gates are handled by exact SWAP-routing but inflate bond dimension on highly entangled states.
+- Noise simulation runs stochastic Kraus trajectories per shot — statistically exact, but shot-count scales runtime.
+- No pulse-level control, no error correction, no GPU/stabilizer backends yet (roadmap).
 
-Example usage:
-```bash
-python examples/generate_grover.py
-python -m src.qvm.cli examples/grover_101.json --nqubits 3 --visualize
-```
+## Explore deeper
 
-## Project Structure (Reference)
+- [Getting Started](/docs/qvm-getting-started) — installation, CLI, first simulation
+- [Tutorial: Bell & Teleportation](/docs/qvm-tutorial-bell-teleportation)
+- [Tutorial: Grover Search](/docs/qvm-tutorial-grover)
+- [Tutorial: VQE](/docs/qvm-tutorial-vqe)
+- [Simulation Engines](/docs/qvm-simulation-engines)
+- [Framework Interop](/docs/qvm-interop)
+- [Noise Modeling](/docs/qvm-noise)
+- [Web API & Dashboard](/docs/qvm-web-api)
 
-```
-src/
-  examples/
-  qvm/
-    cli.py
-    ir.py
-    parser.py
-    simulator.py
-    architecture.py
-    transpiler.py
-    decomposer.py
-    visual.py
-    util/export.py
-tests/
-docs/
-```
-
-## Testing and Quality Assurance
-
-- All tests pass (IR, parser, simulator, transpiler, visualization).
-- Key improvements delivered: vectorized simulator, CLI integration, visualization.
-
-## Roadmap
-
-1. Advanced transpiler routing (SABRE).
-2. Noise simulation (density matrix / Monte Carlo).
-3. OpenQASM 3.0 parsing support.
-4. Web UI for circuit authoring and visualization.
-5. Pulse‑level control (Hamiltonian solver).
-6. MPS simulation for 50–100 qubits (shallow circuits).
-
-## References
-
-1. Nielsen & Chuang, *Quantum Computation and Quantum Information*, 2010.
-2. IBM Quantum, Qiskit Documentation: https://qiskit.org/
-3. Cross et al., “OpenQASM 3,” arXiv:2104.01472 (2021).
-4. Steiger et al., “ProjectQ,” *Quantum*, 2, 49 (2018).
+Source: [github.com/qayumXD/quantum-virtual-machine](https://github.com/qayumXD/quantum-virtual-machine)
